@@ -39,5 +39,5 @@ To set up the project locally, follow these steps:
 To run the tests for this project, use the following command:
 
 ```bash
-npm run test
+npm test
 ```
