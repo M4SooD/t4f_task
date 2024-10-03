@@ -1,7 +1,7 @@
 module.exports = {
   content: [
-    './src/app/**/*.{js,jsx,ts,tsx}', // Scan files in src/app
-    './src/components/**/*.{js,jsx,ts,tsx}', // Scan component files
+    './src/app/**/*.{js,jsx,ts,tsx}',
+    './src/components/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {},
