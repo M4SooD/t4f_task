@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "src", // Ensures that @ maps to src/
     "paths": {
       "@/*": ["./src/*"]
     }
