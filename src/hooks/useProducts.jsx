@@ -5,14 +5,14 @@ const useProducts = (id = null, shouldShuffle = false) => {
   const [products, setProducts] = useState(id ? null : []);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const url = id
-          ? `https://66e20997c831c8811b57050e.mockapi.io/api/v1/home/items/${id}`
-          : `https://66e20997c831c8811b57050e.mockapi.io/api/v1/home/items`;
-
+        const url = `https://66e20997c831c8811b57050e.mockapi.io/api/v1/home/items${
+          id ? `/${id}` : ''
+        }`;
         const response = await axios.get(url);
         let data = response.data;
 
@@ -21,15 +21,20 @@ const useProducts = (id = null, shouldShuffle = false) => {
         }
 
         setProducts(data);
-        setLoading(false);
+        setError(null);
       } catch (err) {
-        setError('Failed to fetch products.');
+        if (retryCount < 3) {
+          setTimeout(() => setRetryCount((prev) => prev + 1), 1000);
+        } else {
+          setError('Failed to fetch products after multiple attempts.');
+        }
+      } finally {
         setLoading(false);
       }
     };
 
     fetchProducts();
-  }, [id, shouldShuffle]);
+  }, [id, shouldShuffle, retryCount]);
 
   return { products, loading, error };
 };

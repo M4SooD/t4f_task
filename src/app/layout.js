@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import './globals.css';
 
 export const metadata = {
@@ -13,13 +12,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Head>
-        <meta name="description" content={metadata.description} />
-        <meta name="keywords" content={metadata.keywords} />
-        <meta name="author" content="Masood Moosavi" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <body className="bg-gray-50">{children}</body>
     </html>
   );

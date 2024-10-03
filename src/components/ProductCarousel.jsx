@@ -47,6 +47,7 @@ const ProductCarousel = () => {
         <button
           onClick={() => router.reload()}
           className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-200"
+          aria-label="Retry loading products"
         >
           Retry
         </button>
@@ -67,10 +68,13 @@ const ProductCarousel = () => {
                 key={product.id}
                 className="min-w-full p-4 bg-white rounded-lg shadow-lg cursor-pointer"
                 onClick={() => viewProductDetail(product.id)}
+                role="button"
+                tabIndex={0}
+                aria-label={`View details for ${product.title}`}
               >
                 <Image
                   src={product.image}
-                  alt={product.title}
+                  alt={`Image of ${product.title}`}
                   width={640}
                   height={480}
                   className="w-full h-auto rounded-lg"

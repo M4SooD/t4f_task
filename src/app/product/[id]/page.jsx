@@ -1,10 +1,10 @@
 'use client';
 
 import { useParams, useRouter } from 'next/navigation';
-import useProducts from '@/hooks/useProducts';
+import useProducts from '../../../hooks/useProducts';
 import Image from 'next/image';
 import { useEffect } from 'react';
-import Skeleton from '@/components/Skeleton'; // Changed from Spinner to Skeleton
+import Spinner from 'components/Spinner';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -17,12 +17,8 @@ const ProductDetail = () => {
     }
   }, [id]);
 
-  const goBackToCarousel = () => {
-    router.back();
-  };
-
-  if (loading) return <Skeleton />; // Show skeleton instead of Spinner
-  if (error) {
+  if (loading) return <Spinner />;
+  if (error)
     return (
       <div className="error-message">
         <p>{error}</p>
@@ -34,7 +30,6 @@ const ProductDetail = () => {
         </button>
       </div>
     );
-  }
 
   return (
     <div className="container mx-auto p-5">
@@ -69,7 +64,7 @@ const ProductDetail = () => {
         </a>
 
         <button
-          onClick={goBackToCarousel}
+          onClick={router.back}
           className="mt-6 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-200"
         >
           Back to Carousel
